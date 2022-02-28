@@ -17,6 +17,7 @@
                 wolframalpha_mob: 'https://m.wolframalpha.com/input/?i=',
                 stackexchange: 'https://math.stackexchange.com/search?q=',
                 mathoverflow: 'https://mathoverflow.net/search?q=',
+                arxiv: 'https://arxiv.org/search/?query=',
                 weixin: 'https://weixin.sogou.com/weixin?type=2&query=',
                 wordref: 'https://www.wordreference.com/fren/',
                 conju: 'https://leconjugueur.lefigaro.fr/conjugaison/verbe/',
@@ -27,7 +28,35 @@
                 USTCwiki: 'http://202.38.70.7:23334/wikipedia_en_mathematics_maxi_2019-08/A/',
                 dict: 'https://www.dict.cc/?s=',
             };
-            openwin(baseURL[site] + encodeURIComponent(document.getElementById(searchId).value));
+            var base2URL = {
+                google: '',
+                bing: '',
+                baidu: '',
+                zhihu: '',
+                info: '',
+                googletl: '',
+                bingtl: '',
+                oulu: '',
+                wikipedia: '',
+                knowpedia: '',
+                encyclopedia: '',
+                term: '',
+                wolframalpha: '',
+                wolframalpha_mob: '',
+                stackexchange: '',
+                mathoverflow: '',
+                arxiv: '&searchtype=all&abstracts=show&order=-announced_date_first&size=50',
+                weixin: '',
+                wordref: '',
+                conju: '',
+                fazhu: '',
+                dezhu: '',
+                herokuapp: '',
+                dujiang: '',
+                USTCwiki: '',
+                dict: '',
+            };
+            openwin(baseURL[site] + encodeURIComponent(document.getElementById(searchId).value) + base2URL[site]);
         };
         function openwin(url) {
             var a = document.createElement("a");
