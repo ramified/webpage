@@ -1,99 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-    <title>My homepage</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="http://home.ustc.edu.cn/~xx352229/css/normalize.css" />
-    <link rel="stylesheet" href="http://home.ustc.edu.cn/~xx352229/css/new.css" />
-    <link rel="stylesheet" href="http://home.ustc.edu.cn/~xx352229/css/nav+footer.css" />
-    <link rel="stylesheet" href="http://home.ustc.edu.cn/~xx352229/fonts/foundation-icons/foundation-icons.css">
-    <style>
-    dl {
-        margin: 0;
-    }
-
-    h5 {
-        width: 100%;
-    }
-
-    hr {
-        border-top: 1px solid black;
-    }
-
-    #count {
-        margin: 0;
-    }
-</style>
-</head>
-<body>
-    <nav>
-        <button class="navbar-toggle"><i class="fi-list-thumbnails size-24"></i></button>
-        <form class="search">
-            <button type="submit" onclick="search('wikipedia', 'mobile')"><i class="fi-magnifying-glass size-24"></i></button>
-            <input id="search-mobile" type="text" placeholder="wiki...">
-        </form>
-        <ul>
-            <li><a href="web/English/information.html">CV</a></li>
-            <li><a href="web/English/toynotes-Eng.html">Notes</a></li>
-            <li><a class="active">homepage</a></li>
-            <li><a href="index-Chi.html">中文</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h1>Xiaoxiang Zhou</h1>
-        <h4>School of Mathematical Sciences, USTC</h4>
-        <hr />
-        <div class="rich_media_inner"> 
-            <p>Welcome to Xiaoxiang's homepage! In this homepage, you're welcomed to see my notes <a href="web/English/toynotes-Eng.html">here</a>.</p>
-            <p>Some informations about the "<a href="web/main/newprogram.html">eine Woche, ein Beispiel</a>".</p>
-            <p>I don't know what should I put in the homepage. Sometimes I just make it a little different.</p>
-        </div>
-        <div class="center"><canvas id="c"></canvas></div>
-    </main>
-    <footer>
-        <p>&copy;Xiaoxiang Zhou. All Rights Reserved.|<a href="mailto:xx352229@mail.ustc.edu.cn">Email Me</a></p>
-    </footer>
-</body>
-<style>
-/*https://stackoverflow.com/questions/5445491/height-equal-to-dynamic-width-css-fluid-layout*/
-@media (max-width: 650px) {
-    canvas {
-        width: 85%;
-        aspect-ratio: 1 / 1;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-@media (min-width: 650px) {
-    canvas{
-        width: 400px;
-        height: 400px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        flex-direction: column;
-        align-items: center;
-        
-    }
-}
-
-</style>
-<script src="http://home.ustc.edu.cn/~xx352229/js/searchbyid.js"></script>
-<script type="importmap">
-    {
-        "imports": {
-            "three": "https://unpkg.com/three@0.148.0/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.147.0/examples/jsm/"
-        }
-    }
-</script>
-
-<script type="module">
-    import * as THREE from 'three';
+﻿    import * as THREE from 'three';
     import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
     import {GUI} from 'three/addons/libs/lil-gui.module.min.js';
     // import { MeshLine, MeshLineMaterial, MeshLineRaycast } from 'threemeshline';
@@ -102,19 +7,15 @@
         const canvas = document.querySelector('#c');
         const renderer = new THREE.WebGLRenderer({
             canvas,
-            alpha: false,
-            antialias: true,
+            alpha: true,
         });
-        renderer.setClearColor(0x000000, 0);
-        renderer.setPixelRatio(window.devicePixelRatio);
-
 
         const fov = 45;
-        const aspect = 1;  // the canvas default
+        const aspect = 2;  // the canvas default
         const near = 0.3;
         const far = 10;
         const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-        camera.position.set(0.2, 1, 3);
+        camera.position.set(0, 1, 3);
 
         const scene = new THREE.Scene();
         // scene.background = new THREE.Color('blue');
@@ -129,7 +30,6 @@
             opacity: 0.5,
             transparent: true,
             flatShading: true,
-            side: THREE.DoubleSide,
         });
 // material.wireframe = true;
 
@@ -144,17 +44,6 @@ const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 const geometry2 = new THREE.DodecahedronGeometry(radius);
 const geometry3 = new THREE.OctahedronGeometry(radius);
 const position = geometry2.getAttribute('position');
-
-// Addstrangepoints
-// const ptmaterial = new THREE.PointsMaterial({
-//     color: 'red',
-//     size: 30,     // in world units
-//     sizeAttenuation: false,
-// });
-// const points = new THREE.Points(geometry2, ptmaterial);
-// scene.add(points);
-
-
 //     console.log( position.count ); // 24
 //     console.log( position.array.length ); // 72
 //     console.log( position.count * 3 === position.array.length); // true
@@ -384,7 +273,3 @@ requestAnimationFrame(render);
 }
 
 main();
-
-</script>
-</html>
-
