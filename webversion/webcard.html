@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Webcard</title>
+</head>
+<body>
+  <p>This is my card game. It is still bad-behaved. See the <a href="https://www.javascripttutorial.net/web-apis/javascript-drag-and-drop/">ideal states</a>.</p>
+  <p>This card game can generate different Auslander-Reiten quivers. Move blue botton.</p>
+<!--   <img id="image" src="card_ext_png1.png" alt="Your Image" width="900">
+  <img id="image" src="card_ext_png2.png" alt="Your Image" width="900"> -->
+  <canvas id="myCanvas" width="1300" height="700"></canvas>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+
+
+
+
+
+      let selectedSquare = null; // keep track of the selected square
+      let offsetX = 0;
+      let offsetY = 0;
+
+
+      // Draw the grid once
+      // Define the grid parameters
+      const gridSize = {
+        x: 111.3, // width of each grid square
+        y: 330, // height of each grid square
+      };
+      const gridOffset = {
+        x: 60, 
+        y: 70, 
+      };
+      const gridStep = {
+        x: gridSize.x + gridOffset.x,
+        y: gridSize.y + gridOffset.y,
+      };
+
+      drawGrid();
+
+
+      const edgeLength = 30;
+
+    let squares = [
+    {source: "card_ext_png1.png", x: 60, y: 70, width: 10, height: 10, xsq:278, ysq:263},
+    {source: "card_ext_png2.png", x: 60, y: 70, width: 10, height: 10, xsq:278+111.3-edgeLength, ysq:263},
+    {source: "card_ext_png3.png", x: 60, y: 70, width: 10, height: 10, xsq:278+111.3*2+edgeLength, ysq:263},
+    {source: "card_ext_png4.png", x: 60, y: 70, width: 10, height: 10, xsq:278+111.3*3, ysq:263-edgeLength},
+    ];
+
+      // Loop through the array of squares and draw each one
+      squares.forEach(square => {
+        drawSquare(square); // draw the square
+      });
+
+
+
+      // Add event listener for mouse down events on the canvas
+
+      canvas.addEventListener('mousedown', function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const offsetX = event.clientX - rect.left;
+        const offsetY = event.clientY - rect.top;
+
+        for (let i = 0; i < squares.length; i++) {
+          const square = squares[i];
+          if (isInsideSquare(offsetX, offsetY, square)) {
+            let startX = square.x - event.clientX;
+            let startY = square.y - event.clientY;
+
+            function onMousemove(event) {
+              const x = event.clientX - rect.left;
+              const y = event.clientY - rect.top;
+              square.x = x + startX + rect.left;
+              square.y = y + startY + rect.top;
+              // redrawCanvas();
+
+            }
+
+            function onMouseup() {
+              const gridCoordinate = {
+                x: Math.round((square.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
+                y: Math.round((square.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y,
+              };
+              square.x = gridCoordinate.x;
+              square.y = gridCoordinate.y;
+              redrawCanvas();
+              document.removeEventListener('mousemove', onMousemove);
+              document.removeEventListener('mouseup', onMouseup);
+            }
+
+            document.addEventListener('mousemove', onMousemove);
+            document.addEventListener('mouseup', onMouseup);
+            break;
+          }
+        }
+      });
+
+      function drawImageWithAspectRatio(ctx, img, x, y, width) {
+        const aspectRatio = img.height / img.width;
+        ctx.drawImage(img, x, y, width, aspectRatio * width);
+      }
+
+      // Draw a square on the canvas
+      function drawSquare(square) {
+        ctx.fillStyle = 'blue'; // set the fill color to blue
+        ctx.fillRect(square.x+square.xsq, square.y+square.ysq, square.width, square.height);
+        // Create a new image object
+        const img = new Image();
+
+        // Set the image source to a PNG file
+        img.src = square.source;
+
+        // When the image is loaded, draw it onto the canvas
+        img.onload = function() {
+          drawImageWithAspectRatio(ctx, img, square.x, square.y, 900);
+        };
+      }
+
+      // Check if a point is inside a square
+      function isInsideSquare(x, y, square) {
+        return x >= square.x+square.xsq && x <= square.x+square.xsq + square.width && y >= square.y+square.ysq && y <= square.y+square.ysq + square.height;
+      }
+
+
+      // Draw the grid lines
+      function drawGrid() {
+        ctx.beginPath();
+        for (let x = gridOffset.x; x < canvas.width; x += gridSize.x) {
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, canvas.height);
+        }
+        for (let y = gridOffset.y; y < canvas.height; y += gridSize.y) {
+          ctx.moveTo(0, y);
+          ctx.lineTo(canvas.width, y);
+        }
+        ctx.strokeStyle = "#ddd"; // set the color of the grid lines
+        ctx.lineWidth = 0.1; // set the thickness of the grid lines
+        ctx.stroke(); // draw the grid lines
+      }
+
+
+      // Redraw the entire canvas with the updated squares
+      function redrawCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawGrid(); // Move this here to redraw the grid every time
+        squares.forEach(square => drawSquare(square));
+        // drawImageWithAspectRatio(ctx, img, 0, 0, 900);
+        
+      }
+    </script>
+  </body>
+  </html>
