@@ -379,7 +379,7 @@ external/system call/.add=
 \def\borderlinewidth{0.3mm}
 \def\borderlinewhitewidth{0.8mm}
 \def\borderlinewholewidth{\borderlinewidth *2 + \borderlinewhitewidth}
-\foreach \x/\xcolor in {2/yellow}
+\foreach \x/\xcolor in {3/green}
 {
 \node (PosA\x) at ([xshift=\border,yshift=-(\upborder+\x * \distance)]current page.north west){};
 \node (PosC\x) at ([xshift=\border,yshift=-(\upborder+\height+\x *\distance)]current page.north west){};
@@ -406,50 +406,50 @@ external/system call/.add=
 % https://q.uiver.app/?q=WzAsMjcsWzIsMSwiXFxzdWJzdGFja3swXFxcXDAwMH0iXSxbMywxLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFsyLDAsIlxcc3Vic3RhY2t7MFxcXFwwMDB9Il0sWzIsMiwiXFxzdWJzdGFja3swXFxcXDAwMH0iXSxbMSwxLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFswLDAsIlxcc3Vic3RhY2t7MFxcXFwwMDB9Il0sWzAsMSwiXFxzdWJzdGFja3swXFxcXDAwMH0iXSxbMCwyLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFs0LDIsIlxcc3Vic3RhY2t7MFxcXFwwMDB9Il0sWzQsMSwiXFxzdWJzdGFja3swXFxcXDAwMH0iXSxbNCwwLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFs1LDEsIlxcc3Vic3RhY2t7MFxcXFwwMDB9Il0sWzYsMiwiXFxzdWJzdGFja3swXFxcXDAwMH0iXSxbNiwxLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFs2LDAsIlxcc3Vic3RhY2t7MFxcXFwwMDB9Il0sWzcsMSwiXFxzdWJzdGFja3swXFxcXDAwMH0iXSxbOCwwLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFs4LDEsIlxcc3Vic3RhY2t7MFxcXFwwMDB9Il0sWzgsMiwiXFxzdWJzdGFja3swXFxcXDAwMH0iXSxbOSwxLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFsxMCwwLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFsxMCwxLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFsxMCwyLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFsxMSwxLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFsxMiwwLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFsxMiwxLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFsxMiwyLCJcXHN1YnN0YWNrezBcXFxcMDAwfSJdLFswLDFdLFs1LDRdLFs2LDRdLFs3LDRdLFs0LDJdLFs0LDBdLFs0LDNdLFsyLDFdLFsxLDEwXSxbMSw5XSxbMywxXSxbMSw4XSxbMTAsMTFdLFs5LDExXSxbOCwxMV0sWzExLDE0XSxbMTEsMTNdLFsxMSwxMl0sWzE0LDE1XSxbMTMsMTVdLFsxMiwxNV0sWzE1LDE2XSxbMTUsMTddLFsxNSwxOF0sWzE2LDE5XSxbMTcsMTldLFsxOCwxOV0sWzE5LDIwXSxbMTksMjFdLFsxOSwyMl0sWzIyLDIzXSxbMjEsMjNdLFsyMCwyM10sWzIzLDI0XSxbMjMsMjVdLFsyMywyNl1d
 
 
-\node [black,nodes={color=yellow!40!black}] at (recCen2) {
-$\begin{tikzcd}[sep={between origins, \betweenpieces}]
-  	\blocktwo{0} && \blocktwo{0} && \blocktwo{0} && \blocktwo{1} && \blocktwo{0} && \blocktwo{0} && \blocktwo{0} \\
-  	\blocktwo{0} & \blocktwo{0} & \blocktwo{0} & \blocktwo{0} & \blocktwo{0} & \blocktwo{1} & \blocktwo{1} & \blocktwo{1} & \blocktwo{0} & \blocktwo{0} & \blocktwo{0} & \blocktwo{0} & \blocktwo{0} \\
-  	\blocktwo{0} && \blocktwo{0} && \blocktwo{1} && \blocktwo{0} && \blocktwo{1} && \blocktwo{0} && \blocktwo{0}
-  	\arrow[from=2-3, to=2-4]
-  	\arrow[from=1-1, to=2-2]
-  	\arrow[from=2-1, to=2-2]
-  	\arrow[from=3-1, to=2-2]
-  	\arrow[from=2-2, to=1-3]
-  	\arrow[from=2-2, to=2-3]
-  	\arrow[from=2-2, to=3-3]
-  	\arrow[from=1-3, to=2-4]
-  	\arrow[from=2-4, to=1-5]
-  	\arrow[from=2-4, to=2-5]
-  	\arrow[from=3-3, to=2-4]
-  	\arrow[from=2-4, to=3-5]
-  	\arrow[from=1-5, to=2-6]
-  	\arrow[from=2-5, to=2-6]
-  	\arrow[from=3-5, to=2-6]
-  	\arrow[from=2-6, to=1-7]
-  	\arrow[from=2-6, to=2-7]
-  	\arrow[from=2-6, to=3-7]
-  	\arrow[from=1-7, to=2-8]
-  	\arrow[from=2-7, to=2-8]
-  	\arrow[from=3-7, to=2-8]
-  	\arrow[from=2-8, to=1-9]
-  	\arrow[from=2-8, to=2-9]
-  	\arrow[from=2-8, to=3-9]
-  	\arrow[from=1-9, to=2-10]
-  	\arrow[from=2-9, to=2-10]
-  	\arrow[from=3-9, to=2-10]
-  	\arrow[from=2-10, to=1-11]
-  	\arrow[from=2-10, to=2-11]
-  	\arrow[from=2-10, to=3-11]
-  	\arrow[from=3-11, to=2-12]
-  	\arrow[from=2-11, to=2-12]
-  	\arrow[from=1-11, to=2-12]
-  	\arrow[from=2-12, to=1-13]
-  	\arrow[from=2-12, to=2-13]
-  	\arrow[from=2-12, to=3-13]
-\end{tikzcd}$
-};
 
+    \node [black] at (recCen3) {
+$\begin{tikzcd}[sep={between origins, \betweenpieces}]
+      	\blockthree{0} && \blockthree{0} && \blockthree{0} && \blockthree{1} && \blockthree{0} && \blockthree{0} && \blockthree{0} \\
+      	\blockthree{0} & \blockthree{0} & \blockthree{0} & \blockthree{0} & \blockthree{1} & \blockthree{1} & \blockthree{0} & \blockthree{1} & \blockthree{1} & \blockthree{0} & \blockthree{0} & \blockthree{0} & \blockthree{0} \\
+      	\blockthree{0} && \blockthree{0} && \blockthree{0} && \blockthree{1} && \blockthree{0} && \blockthree{0} && \blockthree{0}
+      	\arrow[from=2-3, to=2-4]
+      	\arrow[from=1-1, to=2-2]
+      	\arrow[from=2-1, to=2-2]
+      	\arrow[from=3-1, to=2-2]
+      	\arrow[from=2-2, to=1-3]
+      	\arrow[from=2-2, to=2-3]
+      	\arrow[from=2-2, to=3-3]
+      	\arrow[from=1-3, to=2-4]
+      	\arrow[from=2-4, to=1-5]
+      	\arrow[from=2-4, to=2-5]
+      	\arrow[from=3-3, to=2-4]
+      	\arrow[from=2-4, to=3-5]
+      	\arrow[from=1-5, to=2-6]
+      	\arrow[from=2-5, to=2-6]
+      	\arrow[from=3-5, to=2-6]
+      	\arrow[from=2-6, to=1-7]
+      	\arrow[from=2-6, to=2-7]
+      	\arrow[from=2-6, to=3-7]
+      	\arrow[from=1-7, to=2-8]
+      	\arrow[from=2-7, to=2-8]
+      	\arrow[from=3-7, to=2-8]
+      	\arrow[from=2-8, to=1-9]
+      	\arrow[from=2-8, to=2-9]
+      	\arrow[from=2-8, to=3-9]
+      	\arrow[from=1-9, to=2-10]
+      	\arrow[from=2-9, to=2-10]
+      	\arrow[from=3-9, to=2-10]
+      	\arrow[from=2-10, to=1-11]
+      	\arrow[from=2-10, to=2-11]
+      	\arrow[from=2-10, to=3-11]
+      	\arrow[from=3-11, to=2-12]
+      	\arrow[from=2-11, to=2-12]
+      	\arrow[from=1-11, to=2-12]
+      	\arrow[from=2-12, to=1-13]
+      	\arrow[from=2-12, to=2-13]
+      	\arrow[from=2-12, to=3-13]
+\end{tikzcd}$
+};    
 
 \end{tikzpicture}
 }

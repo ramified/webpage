@@ -5,31 +5,26 @@
   <title>Webcard</title>
 </head>
 <body>
-  <p>This is my card game. It is still bad-behaved. See the <a href="https://www.javascripttutorial.net/web-apis/javascript-drag-and-drop/">ideal states</a>.</p>
-  <p>This card game can generate different Auslander-Reiten quivers. Move blue botton.</p>
-<!--   <img id="image" src="card_ext_png1.png" alt="Your Image" width="900">
-  <img id="image" src="card_ext_png2.png" alt="Your Image" width="900"> -->
+  <p>This is my card game. It is still bad-behaved. See the <a href="test3.html">ideal states</a>. <a href="webcard2.html">some temparory replacement</a>. </p>
+  <p>This card game can generate different Auslander-Reiten quivers. Drag bottons to see the effect.</p>
   <canvas id="myCanvas" width="1300" height="700"></canvas>
 
   <script>
+
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
 
 
 
+    let offsetX = 0;
+    let offsetY = 0;
 
-
-
-      let selectedSquare = null; // keep track of the selected square
-      let offsetX = 0;
-      let offsetY = 0;
-
-
+// Here we draw the grid 
       // Draw the grid once
       // Define the grid parameters
       const gridSize = {
-        x: 111.3, // width of each grid square
-        y: 330, // height of each grid square
+        x: 111.3, // width of each grid card
+        y: 330, // height of each grid card
       };
       const gridOffset = {
         x: 60, 
@@ -39,93 +34,6 @@
         x: gridSize.x + gridOffset.x,
         y: gridSize.y + gridOffset.y,
       };
-
-      drawGrid();
-
-
-      const edgeLength = 30;
-
-    let squares = [
-    {source: "card_ext_png1.png", x: 60, y: 70, width: 10, height: 10, xsq:278, ysq:263},
-    {source: "card_ext_png2.png", x: 60, y: 70, width: 10, height: 10, xsq:278+111.3-edgeLength, ysq:263},
-    {source: "card_ext_png3.png", x: 60, y: 70, width: 10, height: 10, xsq:278+111.3*2+edgeLength, ysq:263},
-    {source: "card_ext_png4.png", x: 60, y: 70, width: 10, height: 10, xsq:278+111.3*3, ysq:263-edgeLength},
-    ];
-
-      // Loop through the array of squares and draw each one
-      squares.forEach(square => {
-        drawSquare(square); // draw the square
-      });
-
-
-
-      // Add event listener for mouse down events on the canvas
-
-      canvas.addEventListener('mousedown', function(event) {
-        const rect = canvas.getBoundingClientRect();
-        const offsetX = event.clientX - rect.left;
-        const offsetY = event.clientY - rect.top;
-
-        for (let i = 0; i < squares.length; i++) {
-          const square = squares[i];
-          if (isInsideSquare(offsetX, offsetY, square)) {
-            let startX = square.x - event.clientX;
-            let startY = square.y - event.clientY;
-
-            function onMousemove(event) {
-              const x = event.clientX - rect.left;
-              const y = event.clientY - rect.top;
-              square.x = x + startX + rect.left;
-              square.y = y + startY + rect.top;
-              // redrawCanvas();
-
-            }
-
-            function onMouseup() {
-              const gridCoordinate = {
-                x: Math.round((square.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
-                y: Math.round((square.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y,
-              };
-              square.x = gridCoordinate.x;
-              square.y = gridCoordinate.y;
-              redrawCanvas();
-              document.removeEventListener('mousemove', onMousemove);
-              document.removeEventListener('mouseup', onMouseup);
-            }
-
-            document.addEventListener('mousemove', onMousemove);
-            document.addEventListener('mouseup', onMouseup);
-            break;
-          }
-        }
-      });
-
-      function drawImageWithAspectRatio(ctx, img, x, y, width) {
-        const aspectRatio = img.height / img.width;
-        ctx.drawImage(img, x, y, width, aspectRatio * width);
-      }
-
-      // Draw a square on the canvas
-      function drawSquare(square) {
-        ctx.fillStyle = 'blue'; // set the fill color to blue
-        ctx.fillRect(square.x+square.xsq, square.y+square.ysq, square.width, square.height);
-        // Create a new image object
-        const img = new Image();
-
-        // Set the image source to a PNG file
-        img.src = square.source;
-
-        // When the image is loaded, draw it onto the canvas
-        img.onload = function() {
-          drawImageWithAspectRatio(ctx, img, square.x, square.y, 900);
-        };
-      }
-
-      // Check if a point is inside a square
-      function isInsideSquare(x, y, square) {
-        return x >= square.x+square.xsq && x <= square.x+square.xsq + square.width && y >= square.y+square.ysq && y <= square.y+square.ysq + square.height;
-      }
-
 
       // Draw the grid lines
       function drawGrid() {
@@ -143,12 +51,97 @@
         ctx.stroke(); // draw the grid lines
       }
 
+// Here we define the cards(whose coordinates are indicated by x, y) with rectangles(whose coordinates are indicated by xsq, ysq)
 
-      // Redraw the entire canvas with the updated squares
+const edgeLength = 30;
+let cards = [
+{source: "card_ext_png1.png", x: 60, y: 70, width: 10, height: 10, xsq:278, ysq:263, color:'red'},
+{source: "card_ext_png2.png", x: 60, y: 70, width: 10, height: 10, xsq:278+111.3-edgeLength, ysq:263, color:'orange'},
+{source: "card_ext_png3.png", x: 60, y: 70, width: 10, height: 10, xsq:278+111.3*2+edgeLength, ysq:263, color:'yellow'},
+{source: "card_ext_png4.png", x: 60, y: 70, width: 10, height: 10, xsq:278+111.3*3, ysq:263-edgeLength, color:'green'},
+];
+
+      // Initial drawing
+      drawGrid();
+      cards.forEach(card => {
+        drawCard(card); // draw the card
+      });
+
+// Draw an image on the canvas
+function drawImageWithAspectRatio(ctx, img, x, y, width) {
+  const aspectRatio = img.height / img.width;
+  ctx.drawImage(img, x, y, width, aspectRatio * width);
+}
+
+// Draw a card and a square with color on the canvas
+function drawCard(card) {
+        ctx.fillStyle = card.color; // set the fill color to blue
+        ctx.fillRect(card.x+card.xsq, card.y+card.ysq, card.width, card.height);
+        // Create a new image object
+        const img = new Image();
+
+        // Set the image source to a PNG file
+        img.src = card.source;
+
+        // When the image is loaded, draw it onto the canvas
+        img.onload = function() {
+          drawImageWithAspectRatio(ctx, img, card.x, card.y, 900);
+        };
+      }
+
+// Check if a point is inside a square
+function isInsideSquare(x, y, card) {
+  return x >= card.x+card.xsq && x <= card.x+card.xsq + card.width && y >= card.y+card.ysq && y <= card.y+card.ysq + card.height;
+}
+
+// Add event listeners for mouse down events on the canvas
+
+canvas.addEventListener('mousedown', function(event) {
+  const rect = canvas.getBoundingClientRect();
+  const offsetX = event.clientX - rect.left;
+  const offsetY = event.clientY - rect.top;
+
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    if (isInsideSquare(offsetX, offsetY, card)) {
+      let startX = card.x - event.clientX;
+      let startY = card.y - event.clientY;
+
+      function onMousemove(event) {
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        card.x = x + startX + rect.left;
+        card.y = y + startY + rect.top;
+              redrawCanvas();
+//Here is the problem.I redrawCanvas for so much time, and the problem emerges;
+            }
+
+            function onMouseup() {
+              const gridCoordinate = {
+                x: Math.round((card.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
+                y: Math.round((card.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y,
+              };
+              card.x = gridCoordinate.x;
+              card.y = gridCoordinate.y;
+              redrawCanvas();
+              document.removeEventListener('mousemove', onMousemove);
+              document.removeEventListener('mouseup', onMouseup);
+            }
+
+            document.addEventListener('mousemove', onMousemove);
+            document.addEventListener('mouseup', onMouseup);
+            break;
+          }
+        }
+      });
+
+
+
+      // Redraw the entire canvas with the updated cards
       function redrawCanvas() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawGrid(); // Move this here to redraw the grid every time
-        squares.forEach(square => drawSquare(square));
+        cards.forEach(card => drawCard(card));
         // drawImageWithAspectRatio(ctx, img, 0, 0, 900);
         
       }

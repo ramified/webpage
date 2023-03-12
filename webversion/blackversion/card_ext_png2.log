@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  12 MAR 2023 16:30
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  26 FEB 2023 16:10
 entering extended mode
 **./card_ext_png2.tex
 (card_ext_png2.tex
@@ -1725,12 +1725,12 @@ Package rerunfilecheck Info: File `card_ext_png2.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 459.
  ) 
 Here is how much of TeX's memory you used:
- 38861 strings out of 427748
- 742797 string characters out of 3150981
- 858115 words of memory out of 3000000
- 42181 multiletter control sequences out of 15000+200000
+ 38856 strings out of 427748
+ 742705 string characters out of 3150981
+ 854101 words of memory out of 3000000
+ 42176 multiletter control sequences out of 15000+200000
  544125 words of font info for 70 fonts, out of 3000000 for 9000
  1489 hyphenation exceptions out of 8191
- 61i,28n,82p,1459b,1603s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,28n,82p,1459b,1517s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on card_ext_png2.pdf (1 page).
