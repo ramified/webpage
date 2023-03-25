@@ -5,7 +5,7 @@
   <title>Webcard</title>
 </head>
 <body>
-  <p>This is my card game. It is still bad-behaved. See the <a href="test3.html">ideal states</a>.</p>
+  <p>This is my card game. It is still bad-behaved. See the <a href="test3.html">ideal states</a>. <a href="webcard.html">without move</a>. </p>
   <p>This card game can generate different Auslander-Reiten quivers. Drag blue bottons to see the effect.</p>
   <p id="myParagraph">This produces a AR-quiver. The original quiver is here: </p>
   <canvas id="myCanvas2" width="250" height="75"></canvas>
@@ -115,7 +115,7 @@ canvas.addEventListener('mousedown', function(event) {
         const y = event.clientY - rect.top;
         card.x = x + startX + rect.left;
         card.y = y + startY + rect.top;
-              // redrawCanvas();
+              redrawCanvas();
 //Here is the problem.I redrawCanvas for so much time, and the problem emerges;
 }
 
